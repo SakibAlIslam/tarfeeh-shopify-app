@@ -8,14 +8,38 @@
         <h1 class="text-xl font-bold truncate">{{ shop.name }}</h1>
       </div>
       <!---Nav manu--->
-      <div class="hidden md:flex space-x-10">
+      <div class="hidden md:flex space-x-10" x-data="{open: false}">
         {% for link in section.settings.menuid.links %} {% if link.links !=
         blank %}
         <div class="relative">
-          <button class="inline-flex items-center">
+          <button x-on:click="open = ! open" class="inline-flex items-center">
             {{ link.title }}
-            <span class="pl-[20px]">{% render "icon-dropdown" %}</span>
+            <span>{% render "icon-dropdown" %}</span>
           </button>
+          <div
+            class="absolute z-10 -ml-5 mt-4 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2"
+          >
+            <div
+              class="shadow-lg border ring-black ring-opacity-5 overflow-hidden rounded-lg"
+            >
+              <div
+                class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8"
+              >
+                {% for childLink in link.links %}
+                <a
+                  href="{{ childLink.url }}"
+                  class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-100"
+                >
+                  <div class="ml-4">
+                    <p class="text-gray-900 text-base font-medium">
+                      {{ childLink.title }}
+                    </p>
+                  </div>
+                </a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
         </div>
         {% else %}
         <a
@@ -34,15 +58,17 @@
           {% render "icon-shopping-bag" %}
         </a>
 
-        {% if shop.customer_accounts_enabled %} {% if customer %}
-        <a href="/account" class="text-base text-gray-500 hover:text-gray-900"
-          >Account</a
-        >
-        {{'Log out' | customer_logout_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#ce3636] hover:bg-[#ca0000] "'}}
-        {% else %}
-        {{ "Log in" | customer_login_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#5B4B8A] hover:bg-[#4C3575] "'}}
-        {{ "Register" | customer_register_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#028eda] hover:bg-[#007cc4] "'}}
-        {% endif %} {% endif %}
+        {% if shop.customer_accounts_enabled %} 
+            {% if customer %}
+                <a href="/account" class="text-base text-gray-500 hover:text-gray-900"
+                >Account</a
+                >
+                {{'Log out' | customer_logout_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#ce3636] hover:bg-[#ca0000] "'}}
+                {% else %}
+                {{ "Log in" | customer_login_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#5B4B8A] hover:bg-[#4C3575] "'}}
+                {{ "Register" | customer_register_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#028eda] hover:bg-[#007cc4] "'}}
+            {% endif %} 
+        {% endif %}
       </div>
     </div>
   </div>
