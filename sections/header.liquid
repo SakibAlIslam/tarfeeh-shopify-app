@@ -8,7 +8,7 @@
         <h1 class="text-xl font-bold truncate">{{ shop.name }}</h1>
       </div>
       <!---Nav manu--->
-      <div class="hidden md:flex space-x-10" x-data="{open: false}">
+      <nav class="hidden md:flex space-x-10" x-data="{open: false}">
         {% for link in section.settings.menuid.links %} {% if link.links !=
         blank %}
         <div class="relative">
@@ -20,11 +20,11 @@
             x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0 translate-y-3"
             x-transition:enter-end="opacity-100 translate-y-0"
-
             x-transition:leave="transition ease-out duration-300"
             x-transition:leave-start="opacity-100 translate-y-0"
             x-transition:leave-end="opacity-0 translate-y-3"
-            x-show="open" @click.away="open = false"
+            x-show="open"
+            @click.away="open = false"
             class="absolute z-10 -ml-5 mt-4 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2"
           >
             <div
@@ -56,7 +56,7 @@
           >{{ link.title }}</a
         >
         {% endif %} {% endfor %}
-      </div>
+      </nav>
       <!---cart button/ acc links if enabled--->
       <div class="hidden md:flex items-center justify-end md:flex-1 space-x-2">
         <a
@@ -66,17 +66,15 @@
           {% render "icon-shopping-bag" %}
         </a>
 
-        {% if shop.customer_accounts_enabled %} 
-            {% if customer %}
-                <a href="/account" class="text-base text-gray-500 hover:text-gray-900"
-                >Account</a
-                >
-                {{'Log out' | customer_logout_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#ce3636] hover:bg-[#ca0000] "'}}
-                {% else %}
-                {{ "Log in" | customer_login_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#5B4B8A] hover:bg-[#4C3575] "'}}
-                {{ "Register" | customer_register_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#028eda] hover:bg-[#007cc4] "'}}
-            {% endif %} 
-        {% endif %}
+        {% if shop.customer_accounts_enabled %} {% if customer %}
+        <a href="/account" class="text-base text-gray-500 hover:text-gray-900"
+          >Account</a
+        >
+        {{'Log out' | customer_logout_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#ce3636] hover:bg-[#ca0000] "'}}
+        {% else %}
+        {{ "Log in" | customer_login_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#5B4B8A] hover:bg-[#4C3575] "'}}
+        {{ "Register" | customer_register_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#028eda] hover:bg-[#007cc4] "'}}
+        {% endif %} {% endif %}
       </div>
     </div>
   </div>
