@@ -29,7 +29,7 @@
       <div class="hidden md:flex items-center justify-end md:flex-1 space-x-2">
         <a
           href="/cart"
-          class="whitespace-nowrap text-base text-white hover:text-gray-200 bg-[#ff9900] p-[6px] rounded-md shadow-lg"
+          class="whitespace-nowrap text-base text-white hover:text-gray-200 bg-[#ff9900] p-[6px] rounded-md shadow-lg hover:bg-[#ff8800]"
         >
           {% render "icon-shopping-bag" %}
         </a>
@@ -41,7 +41,7 @@
         {{'Log out' | customer_logout_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#ce3636] hover:bg-[#ca0000] "'}}
         {% else %}
         {{ "Log in" | customer_login_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#5B4B8A] hover:bg-[#4C3575] "'}}
-        {{ "Register" | customer_login_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#028eda] hover:bg-[#007cc4] "'}}
+        {{ "Register" | customer_register_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#028eda] hover:bg-[#007cc4] "'}}
         {% endif %} {% endif %}
       </div>
     </div>
