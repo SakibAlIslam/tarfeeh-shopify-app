@@ -77,7 +77,12 @@
       </table>
 
       <div class="flex flex-col md:flex-row items-center justify-center">
-        <div class="w-full my-4"></div>
+        <div class="w-full my-4">
+            <div class="flex flex-col item-start">
+                <label for="cart-notes" class="my-1">Cart Notes</label>
+                <textarea name="note" id="cart_notes" class="w-full md:max-w-lg resize-none border h-20 p-2 hover:border-indigo-300 rounded-md focus:outline-indigo-500"></textarea>
+            </div>
+        </div>
         <div class="w-full my-4 md:w-80">
             <h3 class="text-xl">Subtotal:{{ cart.total_price | money}}</h3>
             <div class="my-2">
