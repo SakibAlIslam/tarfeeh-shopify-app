@@ -5,7 +5,7 @@
       <h1 class="text-3xl">Your Cart</h1>
       <a
         href="{{ routes.all_products_collection_url }}"
-        class="text-blue-600 hover:text-blue-800 font-medium underline"
+        class="text-white hover:text-gray-700 font-medium bg-emerald-600 py-2 rounded-md shadow-lg px-4"
         >Continue Shopping</a
       >
     </div>
@@ -67,7 +67,7 @@
                 id="updates-{{ forloop.index }}"
                 class="w-20 border p-2"
               />
-            </td>
+            </td> 
             <td class="py-4 px-2">
                 {{item.line_price | money}}
             </td>
