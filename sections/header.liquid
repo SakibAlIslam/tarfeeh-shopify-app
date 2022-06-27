@@ -78,14 +78,14 @@
       <!---cart button/ acc links if enabled--->
       <div class="hidden md:flex items-center justify-end md:flex-1 space-x-2">
         <a
-          href="/cart"
+          href="{{ routes.cart_url }}"
           class="whitespace-nowrap text-base text-white hover:text-gray-200 bg-[#ff9900] p-[6px] rounded-md shadow-lg hover:bg-[#ff8800]"
         >
           {% render "icon-shopping-bag" %}
         </a>
 
         {% if shop.customer_accounts_enabled %} {% if customer %}
-        <a href="/account" class="text-base text-gray-500 hover:text-gray-900"
+        <a href="{{ routes.account_url }}" class="text-base text-gray-500 hover:text-gray-900"
           >Account</a
         >
         {{'Log out' | customer_logout_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#ce3636] hover:bg-[#ca0000] "'}}
