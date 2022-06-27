@@ -1,4 +1,4 @@
-<div class="relative bg-white">
+<div class="relative bg-white" x-data="{mobileMenuOpen: false}">
   <div class="mx-auto px-4 sm:px-6">
     <div
       class="flex justify-center items-center py-6 md:justify-start md:space-x-10"
@@ -8,7 +8,11 @@
         <h1 class="text-xl font-bold truncate">{{ shop.name }}</h1>
       </div>
       <div class="-mr-2 -my-2 ml-3 md:hidden">
-        <button class="bg-white p-2 inline-flex items-center justify-center focus:outline-none">
+        <button
+          x-on:click="mobileMenuOpen = true"
+          type="button"
+          class="bg-white p-2 inline-flex items-center justify-center focus:outline-none"
+        >
           {% render "icon-menu" %}
         </button>
       </div>
@@ -38,7 +42,6 @@
             <div
               class="shadow-lg border ring-black ring-opacity-5 overflow-hidden rounded-lg"
             >
-            
               <div
                 class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8"
               >
@@ -85,10 +88,53 @@
         {{ "Register" | customer_register_link | replace: '<a', '<a class="text-base text-white py-2 px-5 rounded-md shadow-lg bg-[#028eda] hover:bg-[#007cc4] "'}}
         {% endif %} {% endif %}
       </div>
+
+      <!-- mobile menu container -->
+      <div
+        class="absolute z-10 top-0 inset-x-0 p-2 transform origin-top-left md:hidden"
+        x-show="mobileMenuOpen"
+      >
+        <div
+          class="shadow-lg rounded-lg ring-1 ring-black ring-opacity-5 bg-white"
+        >
+          <div class="p-5 divide-y-2 divide-gray-50">
+            <!-- Mobile menu header title plus close button  -->
+            <div class="flex items-center justify-between pb-3">
+              <div>
+                <h1 class="text-lg text-gray-500">
+                  {{ section.settings.mobile_menu_title }}
+                </h1>
+              </div>
+              <div class="-mr-2">
+                <button x-on:click="mobileMenuOpen = false" type="button" class="bg-white rounded-md p-2 text-gray-500">
+                  {% render "icon-close" %}
+                </button>
+              </div>
+            </div>
+            <!-- Navigation links for mobile menu  -->
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-{% schema %} { "name": "Header", "settings": [ { "type":"link_list",
-"id":"menuid", "default": "main-menu", "label": "Heading Navigation Menu" } ] }
+{% schema %} 
+{  
+  "name": "Header", 
+  "settings": [ 
+    {
+      "type":"text",
+      "id":"mobile_menu_title", 
+      "default": "Menu", 
+      "label": "Mobile Menu Title" 
+    },
+    { 
+      "type":"link_list",
+      "id":"menuid", 
+      "default": "main-menu", 
+      "label": "Heading Navigation Menu" 
+    }
+  ] 
+}
 {% endschema %}
