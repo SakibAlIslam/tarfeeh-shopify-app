@@ -1,4 +1,4 @@
-{% if cart.item_count <= 0 %}
+{% if cart.item_count == 0 %}
 <div class="p-4">
   <div class="max-w-6xl flex flex-col my-10 mx-auto">
     <div class="flex items-end justify-between my-5">
@@ -67,9 +67,9 @@
                 id="updates-{{ forloop.index }}"
                 class="w-20 border p-2"
               />
-            </td> 
+            </td>
             <td class="py-4 px-2">
-                {{item.line_price | money}}
+              {{ item.line_price | money }}
             </td>
           </tr>
           {% endfor %}
@@ -78,19 +78,43 @@
 
       <div class="flex flex-col md:flex-row items-center justify-center">
         <div class="w-full my-4">
-            <div class="flex flex-col item-start">
-                <label for="cart-notes" class="my-1">Cart Notes</label>
-                <textarea name="note" id="cart_notes" class="w-full md:max-w-lg resize-none border h-20 p-2 hover:border-indigo-300 rounded-md focus:outline-indigo-500"></textarea>
-            </div>
+          <div class="flex flex-col item-start">
+            <label for="cart-notes" class="my-1">Cart Notes</label>
+            <textarea
+              name="note"
+              id="cart_notes"
+              class="w-full md:max-w-lg resize-none border h-20 p-2 hover:border-indigo-300 rounded-md focus:outline-indigo-500"
+            ></textarea>
+          </div>
         </div>
         <div class="w-full my-4 md:w-80">
-            <h3 class="text-xl">Subtotal:{{ cart.total_price | money}}</h3>
-            <div class="my-2">
-                <button type="submit" name="update" class="w-full p-3 border border-gray-600 text-gray-600 font-medium hover:bg-gray-600 hover:text-white">Update</button>
-            </div>
-            <div class="my-2">
-                <button type="submit" name="checkout" class="w-full p-3 border border-gray-600 font-medium bg-gray-600 text-white">Checkout</button>
-            </div>
+          {% for block in section.blocks %} {% case block.type %} 
+                {% when "subtotal" %}
+                    <h3 class="text-xl">Subtotal:{{ cart.total_price | money }}</h3>
+                {% when "update_button" %}
+                    <div class="my-2">
+                        <button
+                        type="submit"
+                        name="update"
+                        class="w-full p-3 border border-gray-600 text-gray-600 font-medium hover:bg-gray-600 hover:text-white"
+                        >
+                        Update
+                        </button>
+                    </div>
+                {% when "checkout_button" %}
+                    <div class="my-2">
+                        <button
+                        type="submit"
+                        name="checkout"
+                        class="w-full p-3 border border-gray-600 font-medium bg-gray-600 text-white"
+                        >
+                        Checkout
+                        </button>
+                    </div>
+            {% else %} 
+            {% endcase %} 
+          {% endfor %}
+
         </div>
       </div>
     </form>
@@ -109,4 +133,7 @@
     </div>
   </div>
 </div>
-{% endif %}
+{% endif %} {% schema %} { "name": "Template Cart", "blocks": [ {
+"type":"subtotal", "name": "Subtotal", "limit": 1 }, { "type": "update_button",
+"name": "Update Button", "limit": 1 }, { "type": "checkout_button", "name":
+"Checkout Button", "limit": 1 } ] } {% endschema %}
