@@ -98,7 +98,7 @@
                         name="update"
                         class="w-full p-3 border border-gray-600 text-gray-600 font-medium hover:bg-gray-600 hover:text-white"
                         >
-                        Update
+                        {{section.settings.editBtnText}}
                         </button>
                     </div>
                 {% when "checkout_button" %}
@@ -114,7 +114,6 @@
             {% else %} 
             {% endcase %} 
           {% endfor %}
-
         </div>
       </div>
     </form>
@@ -138,6 +137,19 @@
 {% schema %} 
 { 
     "name": "Template Cart", 
+    "settings": [
+      {
+        "type": "text",
+        "id":"editBtnText",
+        "label":"Header Text",
+        "default":"Edit"
+      },
+      {
+        "type": "image_picker",
+        "id": "header_image",
+        "label": "Logo image"
+      }
+    ],
     "blocks": [ 
         {
             "type":"subtotal", 
@@ -152,6 +164,11 @@
         { 
             "type": "checkout_button", 
             "name":"Checkout Button", 
+            "limit": 1 
+        }, 
+        { 
+            "type": "checkoutsssss_button", 
+            "name":"Checkouttt Button", 
             "limit": 1 
         } 
     ] 
