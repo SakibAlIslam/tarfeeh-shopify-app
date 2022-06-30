@@ -6,8 +6,8 @@
       <a
         href="{{ routes.all_products_collection_url }}"
         class="text-white hover:text-gray-700 font-medium bg-emerald-600 py-2 rounded-md shadow-lg px-4"
-        >Continue Shopping</a
-      >
+        >Continue Shopping
+      </a>
     </div>
   </div>
   <div class="max-w-6xl flex flex-col my-10 mx-auto">
@@ -90,7 +90,7 @@
         <div class="w-full my-4 md:w-80">
           {% for block in section.blocks %} {% case block.type %} 
                 {% when "subtotal" %}
-                    <h3 class="text-xl">Subtotal:{{ cart.total_price | money }}</h3>
+                    <h3 class="text-xl">Subtotal:{{ cart.total_price | money  }}</h3>
                 {% when "update_button" %}
                     <div class="my-2">
                         <button
@@ -165,12 +165,7 @@
             "type": "checkout_button", 
             "name":"Checkout Button", 
             "limit": 1 
-        }, 
-        { 
-            "type": "checkoutsssss_button", 
-            "name":"Checkouttt Button", 
-            "limit": 1 
-        } 
+        }
     ] 
 } 
 {% endschema %}
