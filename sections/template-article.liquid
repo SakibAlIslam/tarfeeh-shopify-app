@@ -5,7 +5,7 @@
     <div class="absolute z-10 bottom-5 w-full">
         <h2 class="text-white text-[16px] uppercase font-light text-center"><span class="lowercase"><i>by</i></span> {{ article.author }}</h2>
     </div>
-    <img src="{{ section.settings.cover_image | img_url: "grande" }}" class="opacity-80 object-cover w-full h-[250px] sm:h-[350px] " />
+    <img src="{{ article.image | img_url: "grande" }}" class="opacity-80 object-cover w-full h-[250px] sm:h-[350px] " />
 </div>
 <div class="px-[20px] md:px-[40px]">
     <div class="my-0 mx-auto pb-[50px] md:w-[70%] sm:w-[90%]">
