@@ -7,10 +7,13 @@
     </div>
     <img src="{{ section.settings.cover_image | img_url: "grande" }}" class="opacity-80 object-cover w-full h-[250px] sm:h-[350px] " />
 </div>
-<div>
-
+<div class="px-[20px] md:px-[40px]">
+    <div class="my-0 mx-auto pb-[50px] md:w-[70%] sm:w-[90%]">
+        <p class="text-[#c3c3c3] text-[14px] uppercase tracking-wide mb-3 md:mb-[42px]">{{ article.published_at | date: '• %d %B %Y' }}</p>
+        <div>{{article.content}}</div>
+    </div>
 </div>
-<small>{{article.content}}</small>
+
 
 {% schema %}
 {
