@@ -1,3 +1,18 @@
-<h1>{{ article.title }}</h1>
-
+<div class="w-full sm:h-[250px] md:h-[350px] h-[350px] mb-20 sm:mb-[50px] md:mb-20">
+    
+    <img src="{{ section.settings.cover_image | img_url: "grande" }}" class="opacity-80 object-cover w-full sm:h-[250px] md:h-[350px] h-[350px]" />
+</div>
 <small>{{article.content}}</small>
+
+{% schema %}
+{
+   "name": "Template Article",
+  "settings": [
+    {
+       "type": "image_picker",
+       "id":"cover_image",
+       "label":"Article Cover Image"
+    }
+  ]
+}
+{% endschema %}
