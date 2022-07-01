@@ -1,6 +1,14 @@
-<div class="w-full sm:h-[250px] md:h-[350px] h-[350px] mb-20 sm:mb-[50px] md:mb-20">
-    
-    <img src="{{ section.settings.cover_image | img_url: "grande" }}" class="opacity-80 object-cover w-full sm:h-[250px] md:h-[350px] h-[350px]" />
+<div class="relative w-full h-[250px] sm:h-[350px] mb-20 sm:mb-[50px] md:mb-20 bg-[#000] flex items-center">
+    <div class="absolute z-10 left-0 right-0 my-0 mx-auto w-11/12 sm:w-1/2">
+        <h1 class="text-white text-[20px] sm:text-[32px] font-light tracking-wider text-center mb-[70px]">{{article.title}}</h1>
+    </div>
+    <div class="absolute z-10 bottom-5 w-full">
+        <h2 class="text-white text-[16px] uppercase font-light text-center"><span class="lowercase"><i>by</i></span> {{ article.author }}</h2>
+    </div>
+    <img src="{{ section.settings.cover_image | img_url: "grande" }}" class="opacity-80 object-cover w-full h-[250px] sm:h-[350px] " />
+</div>
+<div>
+
 </div>
 <small>{{article.content}}</small>
 
