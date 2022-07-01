@@ -1,8 +1,20 @@
-{% paginate collection.products by 3 %}
-    {% for product in collection.products %}
-
-     {% else %}
-        <p>there no product of this collection</p>
-    {% endfor %}
+{% paginate collection.products by 2 %}
+    <div class="flex items-center justify-center mt-10">
+        {% if collection.all_products_count > 0 %}
+        {% for product in collection.products %}
+            <div class="mx-8 border w-80 flex flex-col">
+                <img class="object-cover w-full" src="{{ product.featured_image | img_url: 'grande' }}" alt="">
+                <p class="text-center text-xl text-gray-900 font-bold py-2">
+                    {{product.title}}
+                </p>
+                <p class="text-center text-lg text-gray-500 font-medium py-2">
+                    {{product.price | money}}
+                </p>
+            </div>
+        {% endfor %}
+        {% else %}
+                <p>there is no product</p>
+        {% endif %}
+    </div>
     {% render 'pagination', pagination: paginate %}
 {% endpaginate %}
